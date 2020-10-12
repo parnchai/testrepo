@@ -1,0 +1,242 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{ {DQS_images/} }
+\usepackage{epstopdf}
+\usepackage{inputenc}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{tabstackengine}
+\usepackage{xcolor}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\title{CERES FLASHFlux Version4A - Terra/Aqua SSF \\
+ Data Quality Summary}
+
+\date{\today}
+
+\maketitle
+
+\begin{framed}
+\begin{tabbing}
+Indent \= \kill
+Investigation:  CERES \\
+\\
+Data Product: FLASHFlux Single Scanner Footprint TOA/Surface Fluxes and Clouds (SSF) \\
+\\
+Data Set: Terra CERES-FM1, MODIS 8/2020-Present; Aqua CERES-FM3, MODIS 8/2020-Present \\
+\\
+Data Set Version: Version4A \\
+\\
+Data DOI: \\
+\\
+Subsetting Tool Availability: \href {https://ceres-tool.larc.nasa.gov/ord-tool/products?CERESProducts=FLASH_SSF}{Order data}\\ 		
+\end{tabbing}
+
+The purpose of this document is to inform users of the attributes of the FLASHFlux Single Scanner Footprint (SSF) Version 4A data products and describe differences relative to the previous version as determined by the CERES FLASHFlux Working Group. The document summarizes key validation results, provides cautions where users might easily misinterpret the data, provides links to further information about the data product, algorithms, and accuracy, and gives information about planned data improvements. 
+
+This document is a high-level summary and represents the minimum information needed by scientific users of this data product. It is strongly suggested that authors, researchers, and reviewers of research papers re-check this document for the latest status before publication of any scientific papers using this data product
+
+\end{framed}
+
+\tableofcontents
+
+\listoffigures
+\listoftables
+%Start Section 1
+\section{Nature of the CERES FLASHFlux SSF Version4A Product}
+
+The Fast Longwave and SHortwave Flux (FLASHFlux) dataset is a product of the Clouds and the Earth's Radiant Energy Systems (CERES) project designed to process and release top-of-atmosphere (TOA) and surface radiative fluxes within one week of CERES instrument measurement. The CERES project is currently producing world-class climate data products from measurements taken aboard NASA's Terra and Aqua satellites. While of exceptional fidelity, these data products require a considerable amount of processing time to assure quality, verify accuracy, and assess precision. The result is that CERES climate quality data products are typically released several months after acquisition of the initial measurements. For climate studies, such delays are of little consequence especially considering the improved quality of the released data products. There are, however, many actual and potential uses for the CERES-like data products on a close to real-time basis. These include CERES instrument calibration and subsystem quality checks, operational usage by related Earth Science satellites, seasonal predictions, land and ocean assimilations, support of field campaigns, outreach programs such as GLOBE (Global Learning and Observations to Benefit the Environment) and application projects for agriculture and energy industries via POWER (Prediction Of Worldwide Energy Resource) project. Since these applications do not require exacting standards, FLASHFlux products are eminently suitable for all such applications.
+FLASHFlux data products were envisioned as a resource whereby CERES-like data could be provided to the community within a week of the initial measurements, with some calibration accuracy requirements relaxed to gain speed. Since the FLASHFlux data were created to provide CERES-like TOA and surface radiative flux retrievals for the entire globe within one week of measurement, this document provides general information about the data products and specifically discusses the algorithm input parameters (SSF-46 through SSF-49, not including SSF-49a, SSF-49b, and SSF-49c).  Even though FLASHFlux intends to incorporate the latest input data sets and improvements into algorithms, there are no plans to reprocess the FLASHFlux data products once these modifications are in place. Thus, together with relaxed calibration requirements, the FLASHFlux data products are not of climate quality. Users seeking multi-year climate quality data sets should instead use the CERES data products.
+
+Each footprint (nadir resolution 20-km equivalent diameter) on the 
+FLASHFlux SSF includes reflected shortwave (SW) and emitted longwave (LW) 
+radiances and top-of-atmosphere (TOA) fluxes from CERES with temporally and spatially coincident imager-based radiances, cloud properties, and meteorological information from a fixed 4-dimensional analysis provided by the Global Modeling and Assimilation Office (GMAO). Each file in this data product contains one hour of full and partial-Earth view measurements or footprints at surface reference level.
+
+Cloud properties are inferred from the Moderate-Resolution Imaging Spectroradiometer (MODIS) imager, which flies along with CERES on the Terra and Aqua spacecraft. MODIS is a 36-channel; 1-km, 500-m, and 250-m nadir resolution; narrowband scanner operating in crosstrack mode. To infer cloud properties, FLASHFlux uses a 1-km resolution MODIS radiance subset that has been subsampled to include only the data that corresponds to every fourth 1-km pixel and every second scanline. The SSF retains footprint imager radiance statistics (SSF-115 through SSF-131e, SSF Collection Guide.) for 12 MODIS channels. 
+
+Just like CERES, FLASHFlux defines SW (shortwave or solar) and LW (longwave or thermal infrared) in terms of physical origin, rather than wavelength. We refer to the solar radiation that enters or exits the Earth-atmosphere system as SW. LW is the thermal radiant energy emitted by the Earth-atmosphere system. Emitted radiation that is subsequently scattered is still regarded as LW. Roughly 1 of the incoming SW is at wavelengths greater than 4 m. Less than 1 W m-2 of the emitted LW radiation is at wavelengths smaller than 4 m. The CERES unfiltered window (WN) radiance is not used in FLASHFlux processing.
+
+The FLASHFlux SSF product uses the high spectral and spatial resolution MODIS imager-based cloud properties. A major advantage of  FLASHFlux SSF is the use new ADMs derived from CERES Rotating Azimuth Plane data that now allow accurate radiative fluxes not only for monthly mean regional ensembles  but also as a function of cloud type. Fluxes in the CERES FLASHFlux Version4A SSF are based on updated ADMs. With these ADMs, accurate fluxes can be obtained for both optically thin clouds as a class, as well as optically thick clouds. This is a result of empirical CERES ADMs that classify clouds by optical depth, cloud fraction, and water/ice classes. 
+
+
+Finally, early estimates of surface radiative fluxes are given using relatively simple radiation parameterizations applied to the SSF radiation and cloud parameters along with the input meteorology (Gupta et al., Kratz et al., ). These estimates strive for simplicity and, as directly as possible, use the TOA flux observations. 
+
+
+A full list of parameters on the SSF is contained in the SSF section of the CERES Data Products Catalog (PDF) and a definition of each parameter is contained in the SSF Collection Guide. 
+
+When referring  to a FLASHFlux data set, please include the satellite name and/or the CERES instrument name, the data set version, and the data product. Multiple files that are identical in all aspects of the filename except for the 6-digit configuration code (see Collection Guide) differ little, if any, scientifically. Users may, therefore, analyze data from the same satellite/instrument, data set version, and data product without regard to configuration code. Depending upon the instrument analyzed, these data sets may be referred to as "CERES FLASHFlux Terra FM1 Edition4A SSF" or CERES Aqua FM3 Edition4A SSF.
+%1.1
+\subsection{FLASHFlux Processing Flowchart}
+%1.2
+\subsection{FLASHFlux Calibration Coefficients}
+FLASHFlux uses a specially derived gain+spectral coefficients denoted by the ?SCCD/SCCN? (Spectral Calibration Coefficients Day/Night) box in Figure 1.  These coefficients are supplied by the CERES instrument team and used to calibrate the radiances moving forward.  These correction coefficients contain the latest gain, spectral correction, and Rev1 scaling factor adjustments are used to process the data. These correction coefficients are updated whenever a new set of adjustments are computed from the CERES Edition data. CERES Rev1 corrections are included in the special set of correction coefficients used by FLASHFlux and should not be applied again by the user.  The coefficients are compared against radiances calibration using formal CERES Ed4 calibration for the month of the delivery.  Table 1 provides an example for the calibration coefficients delivered to FLASHFlux for production from the data months June 2019.
+%Start Section2
+\section{Cautions and Helpful Hints}\label{cautions}
+There are several cautions that are noteworthy regarding the use of CERES FLASHFlux Version4A SSF data.  These are mostly identical to the CERES Edition4 SSF but are copied here for convenience.
+%2.1
+\subsection{General}\label{general}
+\begin{itemize}
+	\item The SSF data sets contain only every other CERES footprint when the viewing zenith is 		less than 63$^{\circ}$. All footprints with a viewing zenith greater than or equal to 63$^{\circ}$ 		are included in the SSF. When SSF-20, "CERES viewing zenith at surface," is less than 			63$^{\circ}$ and SSF-13, "Packet number," is even, then only footprints with an even value in 		SSF-12, "Scan sample number," are placed on the SSF. When "CERES viewing zenith at 			surface" is less than 63$^{\circ}$ and "Packet number" is odd, then only footprints with an odd 		value in "Scan sample number" are placed on the SSF. (See SSF Collection Guide). The 			CERES footprints are sufficiently overlapped in the scanning direction, that this use of every 		other footprint does not leave gaps in the data spatial coverage, or significantly increase errors 		in gridded data products or instantaneous comparisons to surface data such as BSRN. 
+	
+	\item This SSF contains only CERES footprints with at least one imager pixel of coverage that 		could be identified as clear or cloudy. This puts more burden on the users to screen footprints 		according to their needs. For example, if one wants to relate CERES fluxes with imager-derived 	cloud properties (e.g. cloud fraction), it is very important to check SSF-54, "Imager percent 		coverage" (i.e., the percentage of the CERES footprint which could be identified as clear or 		cloudy). When none of the imager pixels within the footprint could be identified as clear or 		cloudy, the footprint is not included on the SSF. The SSF also contains a flag that provides 		information on how much of the footprint contains pixels which could not be identified as clear 		or cloudy. This flag is referred to as "Unknown cloud-mask" and resides in SSF-64, "Notes on 		general procedures." Footprints with VZA greater than 80$^{\circ}$ and less than 100\% imager 	coverage may be partial Earth-view. Consult SSF-34, "Radiance and Mode flags," to determine 	whether the footprint is full Earth-view or not. 
+	
+	\item This SSF contains only CERES footprints with at least one valid CERES radiance.
+	
+	\item The geographic location of a CERES flux estimate is at the surface geodetic latitude and 		longitude of the CERES footprint centroid.
+	
+	\item Users interested in surface type should always examine both SSF-25, "Surface type 		index," and SSF-26, "Surface type percent coverage." (See SSF Collection Guide.)
+	
+	\item Users searching for footprints free of snow and ice should always examine SSF-25, "Surface type index,"; SSF-69, "Cloud-mask snow/ice percent coverage "; and SSF-30, "Snow/Ice percent coverage clear-sky overhead-sun vis albedo." (See SSF Collection Guide.)
+	
+	\item Data in an area experiencing a solar eclipse is not processed for the duration of the
+	 eclipse.
+	 
+	 \item  For  Version4A SSF data sets, there is no algorithm for mean asymmetry factor for cloud layer.Therefore, SSF-106a, Mean asymmetry factor for cloud layer (see SSF Collection Guide), is set to the CERES default fill value for all footprints. 
+	 
+	 \item Cloud parameters are saved by cloud layer. Up to two cloud layers may be recorded within a CERES footprint. The heights of the layers will vary from one footprint to another. When there is a single layer within the footprint, it is defined as the lower layer, regardless of its height. A second, or upper, layer is defined only when a footprint contains two unique layers. It is possible to have two unique cirrus layers or two unique layers below 4 km. Within an SSF file, the lower layer of one footprint may be much higher than the upper layer of another footprint.
+	 
+	 \item Night and near-terminator cloud properties - The current method for deriving cloud phase, particle size, and optical depth at night has not been fully tested. It has been implemented primarily to improve the nocturnal determination of cloud effective height for optically thin clouds ($\tau$ $<$  5) and is generally effective at retrieving more accurate cloud heights compared to assuming that all clouds act as blackbody radiators at night. (See Cloud Properties Accuracy and Validation.) Because an accurate optical depth is required to obtain the proper altitude correction, the optical depths for optically thin clouds are considered reasonable.
+	 
+	 \item When averaging cloud properties using multiple footprints, the cloud property should be weighted by cloud area coverage for each level and the denominator would be a sum of cloud area coverage for all levels used. If a straight average is performed, extreme values are minimized. Differences of 150 hPa in effective pressure have been seen between the two techniques when creating 1 degree angular grids in the tropics.
+	 
+	 \item The 0.65 $\mu$m and 3.8 $\mu$m optical depths have a mismatch due to an error in the model look-up tables.
+	 
+	 \item There can be minor effects on particle radius and optical depth over ice and snow due to an error in the parameterization of 1.24 and 2.13 $\mu$m reflectances.
+	 
+	 \item The CO2 algorithm thin ice cloud height correction may overestimate the effective height.
+	 
+\end{itemize}
+%2.2
+\subsection{Aerosol}\label{aerosol}
+%2.3
+\subsection{TOA Flux}\label{toa}
+%Start Section 3
+\section{Version History}\label{history}
+%3.1
+\subsection{Changes between Version3C and Version4A}
+New CERES gains and spectral responses are used that provide a consistent radiometric scale between Terra and Aqua. CERES Single Scanner Footprint (SSF) Version4A incorporate improved imager cloud property algorithms; new ADMs generated from the updated cloud properties; and updated surface flux models.
+%3.1.1
+\subsubsection{Radiances}
+The Terra instruments now have correction determined by the on-orbit calibration to adjust for shortwave drift. In Version4A, a monthly gain correction is applied without using interpolation between values that had been previously computed.Further refinement in the at-launch Spectral Response Function (SRF) improved scene dispersion. A new spectral degradation model is applied to the Total channel that largest effect is to remove LW daytime trends in Aqua instruments. 
+%Need to edit this. Do we want this table?
+
+\textcolor{red}{\bf A comparison of the resulting changes between matched nadir footprints in unfiltered radiances and representative values from Edition3A are given in Table 3 1. The Edition4A SW radiances are about a tenth of a Wm-2 lower than Edition3A. The Edition4 LW daytime radiance has also increase, but the change is not as consistent between instruments and seasons. The Edition4 LW nighttime radiance remains basically unchanged. }
+
+
+\subsubsection{Clouds Algorithm}
+Due to noise on the Aqua MODIS 1.60 $\mu$m channel, Version4A used the 1.24 and 2.13 $\mu$m channels for cloud detection and secondary cloud particle size for both satellites. Whereas, 1.60 $\mu$m had previously been used when processing Terra MODIS and 2.13 $\mu$m during Aqua processing. The MODIS radiances from Terra were adjusted to better follow those from Aqua. Since both platforms now use the same imager channels, the microphysical properties are also more consistent. Cloud optical depth and microphysical properties are obtained at 1.24 and 2.13 $\mu$m (SSF-108 through SSF-110c).
+
+Improvements made in the cloud mask algorithms, resulted in a global increase of 0.05 in cloud amounts. There are fewer cases where dust is being misidentified as clouds while thin cirrus is better detected using the 1.38 $\mu$m reflectance. The distinct transition in cloud fraction that delineated the polar and non-polar masks has been minimized.
+
+Cloud phase statistics changed significantly with an overall shift from ice to liquid of 0.08 with significantly more liquid clouds occurring over nonpolar land.
+
+The cloud top heights and pressures are more consistent between Terra and Aqua then in Version3. Cloud top and base temperature (SSF-94a, SSF-102a) and top height (SSF-94b) are now included in the product. A monthly, regional variable apparent lapse rate is now used in the boundary layer instead of the previous constant lapse rate. A CO2 emission method provides cloud properties (SSF-111a through SSF-112).
+
+The lack of retrieved cloud parameters has decreased. Hexagonal ice columns with roughened surfaces are used in the radiative transfer computations instead of the previous smooth surfaces.
+
+An experimental multilayer cloud algorithm, assuming a thin ice cloud over a water cloud, is combined with the VIST algorithm (SSF-114a through SSF-114l).  
+
+\subsubsection{TOA Fluxes}
+To account for the new cloud properties, the empirical ADMs were updated using Version4A RAPS data. The number of bins was increased for many of the ADMs. New algorithms were introduced for others. The most significant changes are over clear ocean, clear land, and polar regions. The flux changes are less than 0.5 W m-2 on a monthly global scale, but can result in monthly mean instantaneous fluxes changes of 5 W m-2 on a regional 1o latitude by 1o longitude scale.
+
+A modified Ross-Li 3-parameter fit for Normalized Difference Vegetation Index (NDVI), cosine solar zenith angle and surface roughness is now used in the shortwave clear land ADM. The clear land ADM is now used for clear fresh snow while additional surface brightness and cloud fraction bins were added to the partly cloudy and overcast fresh snow ADM.  A special ADM was developed for clear conditions over Antarctica to account for the effect of sastrugi and one ADM is used for clear conditions over Greenland. During overcast conditions for permanent snow, ADM for each cloud phase and four log optical depth bin are used.  A sea ice brightness index was created to improve the sea-ice ADM. While aerosol type gained an additional stratification in the clear ocean ADM.    
+
+The longwave clear ADMs is calculated with interpolation between bins along with increasing the number on various bins. For longwave cloudy ADMs, the third-order polynomial fits between radiance and pseudoradiance was replaced with mean values at 1 W m-2 sr-1 intervals in pseudoradiances.   
+
+The incoming solar radiation constant of 1365 Wm-2 has been replaced with the daily value as provided by the Total Solar Irradiance (TSI) from the SOlar Radiation and Climate Experiment (SORCE) as supplemented by World Radiation Center (WRC), Davos and the Royal Meteorological Institute of Belgium (RMIB) data. The Total Incoming Solar Radiation (SSF-38a) is now included on the SSF.
+%need this table for Version3C and Version4A comparison
+
+\textcolor{red} {A similar comparison of the resulting changes between matched CERES nadir footprints in fluxes and representative values from Edition3A are given in Table 3 2. The Edition4A SW fluxes are between 1 and 2 W lower than Edition3A. The Edition4 LW fluxes differ, but the change is not as consistent between instruments and seasons. }
+
+%table 3.1 Comparing TOA fluxes of FF V4A minus CERES Ed4A	
+\begin{table}[h]
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{|l|}{Instruments} & \multicolumn{1}{l|}{Flux}           & \multicolumn{1}{l|}{January}      & \multicolumn{1}{l|}{April}        & \multicolumn{1}{l|}{July}        & \multicolumn{1}{l|}{October}      \\ \hline
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{Shortwave}      & \multicolumn{1}{l|}{0.08 (2.81)}  & \multicolumn{1}{l|}{0.07 (2.57)}  & \multicolumn{1}{l|}{0.06 (2.57)} & \multicolumn{1}{l|}{0.07 (2.25)}  \\ \cline{2-6} 
+\multicolumn{1}{l|}{Terra-FM1}    & \multicolumn{1}{l|}{Longwave Day}   & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}            & \multicolumn{1}{l|}{}             \\ \cline{2-6} 
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{Longwave Night} & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}            & \multicolumn{1}{l|}{}             \\ \cline{2-6} 
+                                  &                                     &                                   &                                   &                                  &                                   \\ \cline{2-6} 
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{Shortwave}      & \multicolumn{1}{l|}{-0.04 (2.35)} & \multicolumn{1}{l|}{-0.01 (2.54)} & \multicolumn{1}{l|}{0.02 (2.65)} & \multicolumn{1}{l|}{-0.01 (2.16)} \\ \cline{2-6} 
+\multicolumn{1}{l|}{Aqua-FM3}     & \multicolumn{1}{l|}{Longwave day}   & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}            & \multicolumn{1}{l|}{}             \\ \cline{2-6} 
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{Longwave Night} & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}            & \multicolumn{1}{l|}{}             \\ \cline{2-6} 
+\end{tabular}
+\caption{TOA Fluxes comparison of FF Version4A to CERES Ed4A}
+\label{tab:ta}
+\end{table}
+
+
+\subsubsection{Surface Model}
+The Langley Parameterized Shortwave Algorithm (LPSA) was improved with the switch to albedo maps derived from CERES Terra and aerosol data from the daily Model of Atmospheric Transport and CHemistry (MATCH) datasets. The Rayleigh molecular scattering formulation was replaced with Bodhaine et al. (1999).  Revised empirical coefficient in the cloud transmission formula has improved the SW surface flux in partly cloudy condition.  Also, a new parameterization was added to LPSA for conditions when the surface is believed to be snow and/or ice covered and the main algorithm fails.  
+
+The Langley Parameterized Longwave Algorithm (LPLA) now constrains the lapse rate and inversion strength. The Langley Parameterized Algorithm now provides shortwave (SSF-46a) and longwave (SSF-47a) clear-sky surface flux. 
+
+\subsubsection{Imager Radiance}
+The ability to provide up to an additional 7 imager radiance channel with total and clear sky means have been included (SSF-131a through SSF-131e).
+
+\subsection{Differences between CERES FLASHFlux SSF Version3C, 4A and CERES SSF Edition4A}
+
+FLASHFlux and CERES SSF are very similar in many ways; however, there are important differences that users should consider. These are listed below.
+\begin{enumerate}
+\item FLASHFlux will provide high quality data sets to the community within a week of the initial measurements; however, the FLASHFlux data sets will not be reprocessed into consistent time series records, and therefore, they should not be intermixed with the CERES climate quality data sets.
+\item FLASHFlux will only be available until CERES climate quality data sets become available. This can take more than three months.
+\item FLASHFlux input data sets and algorithms will change as improvements become available; however, no reprocessing is done to make current products backward compatible.
+\item FLASHFlux Version-4A uses GEOS FP-IT data as input. In contrast, CERES Ed-4A used a frozen version of GEOS-4 (4.0.3) up to 31 December 2007, and a frozen version of GEOS-5.4.1 (G5-CERES) after that date.
+\end{enumerate}
+
+\subsubsection{Data Sets Input Comparison}
+
+
+
+
+\section{Accuracy and Validation}\label{validation}
+\subsection{Calibration Coefficients}
+\subsection{TOA fluxes comparison}
+\begin{figure}[h]
+\caption{Comparing FLASHFlux Version4A to CERES Ed4A}
+\includegraphics[width=6cm]{FF4A-C4A_swtoa_201901}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\caption{Comparing FLASHFlux Version4A to CERES Ed4A}
+\includegraphics[scale=1]{Picture1}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\caption{Comparing FLASHFlux Version4A to FLASHFlux Version3C}
+\includegraphics[width=6cm]{FF4A-FF3C_swtoa_201901}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\caption{Comparing FLASHFlux Version4A to CERES Ed4A}
+\includegraphics[width=6cm]{FF4A-C4A_lwtoa_201901}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\caption{Comparing FLASHFlux Version4A to FLASHFlux Version3C}
+\includegraphics[width=6cm]{FF4A-FF3C_lwtoa_201901}
+\centering
+\end{figure}
+
+\subsection{Surface fluxes comparison}
+
+\subsection{Surface sites Validation}
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\end{document}
